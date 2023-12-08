@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage>
                         Center(
                           child:Container(
 
-                            constraints: BoxConstraints(maxWidth: 430,maxHeight: 280), // Adjust the maximum width as needed
+                            constraints: BoxConstraints(maxWidth: 430,maxHeight: 284), // Adjust the maximum width as needed
                             child: Card(
                               elevation: 5,
                               shape: RoundedRectangleBorder(
@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage>
                                             return null;
                                           },
                                         ),
-                                        SizedBox(height: 20),
+                                        SizedBox(height: 8),
                                         TextFormField(
                                           controller: _phoneController,
                                           keyboardType: TextInputType.number,
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage>
                                                                 },
                                                               ),
                                                             ),
-                                                            SizedBox(height: 12),
+                                                            SizedBox(height: 10),
                                                             ElevatedButton(
                                                               onPressed: () {
                                                                 if (_formKey1.currentState!.validate()) {
