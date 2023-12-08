@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/auth_service.dart';
-import 'home_page.dart';
+import 'ConfirmationScreen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -65,17 +65,20 @@ class _LoginPageState extends State<LoginPage>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(padding: EdgeInsets.symmetric(horizontal: 9)),
-                              Text("Scissor's",style: TextStyle(
-                                  fontSize: 20
+                              Text("Scissor's",style: GoogleFonts.openSans(
+                                textStyle: TextStyle(
+                                    color: Colors.brown[900],
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
                               ),),
                             ]),
-                        SizedBox(height: 50),
+                        SizedBox(height: 40),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               "Enter your Details",
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.openSans(
                                 textStyle: TextStyle(
                                     color: Colors.brown[900],
                                     fontSize: 25,
@@ -87,7 +90,7 @@ class _LoginPageState extends State<LoginPage>
                         Center(
                           child:Container(
 
-                            constraints: BoxConstraints(maxWidth: 430,maxHeight: 284), // Adjust the maximum width as needed
+                            constraints: BoxConstraints(maxWidth: 430,maxHeight: 279), // Adjust the maximum width as needed
                             child: Card(
                               elevation: 5,
                               shape: RoundedRectangleBorder(
@@ -104,7 +107,13 @@ class _LoginPageState extends State<LoginPage>
                                           keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
                                             labelText: "Enter your name",
-                                            labelStyle: TextStyle(color: Colors.brown),
+                                            labelStyle: GoogleFonts.openSans(
+                                              textStyle: TextStyle(
+                                                  color: Colors.brown[900],
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   color: Colors.brown, width: 1.0),
@@ -124,13 +133,19 @@ class _LoginPageState extends State<LoginPage>
                                             return null;
                                           },
                                         ),
-                                        SizedBox(height: 8),
+                                        SizedBox(height: 10),
                                         TextFormField(
                                           controller: _phoneController,
                                           keyboardType: TextInputType.number,
                                           decoration: InputDecoration(
                                             prefixText: "+91 ",
                                             labelText: "Enter your mobile  number",
+                                            labelStyle: GoogleFonts.openSans(
+                                              textStyle: TextStyle(
+                                                  color: Colors.brown[900],
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   color: Colors.brown, width: 1.0),
@@ -157,10 +172,10 @@ class _LoginPageState extends State<LoginPage>
                                             return null;
                                           },
                                         ),
-                                        SizedBox(height: 15),
+                                        SizedBox(height: 10),
                                         SizedBox(
                                           height: 50,
-                                          width: double.infinity,
+                                          width: 150,
                                           child:ElevatedButton(
                                             onPressed: () {
                                               setState(() {
@@ -174,7 +189,12 @@ class _LoginPageState extends State<LoginPage>
                                                       SnackBar(
                                                         content: Text(
                                                           "Error in sending OTP",
-                                                          style: TextStyle(color: Colors.white),
+                                                          style:  GoogleFonts.openSans(
+                                                        textStyle: TextStyle(
+                                                        color: Colors.brown[900],
+                                                            fontSize: 15,
+                                                            ),
+                                                      ),
                                                         ),
                                                         backgroundColor: Colors.red,
                                                       ),
@@ -231,7 +251,7 @@ class _LoginPageState extends State<LoginPage>
                                                                       Navigator.pushReplacement(
                                                                         context,
                                                                         MaterialPageRoute(
-                                                                          builder: (context) =>  HomePage (name: _nameController.text,
+                                                                          builder: (context) =>  ConfirmationScreen (name: _nameController.text,
                                                                             phoneNumber: _phoneController.text,), // Navigate to the next page on success
                                                                         ),
                                                                       );
@@ -251,10 +271,16 @@ class _LoginPageState extends State<LoginPage>
                                                               },
                                                               child: Text(
                                                                 "Submit",
-                                                                style: TextStyle(color: Colors.white),
+                                                                style: GoogleFonts.openSans(
+                                                                  textStyle: TextStyle(
+                                                                      color: Colors.white,
+                                                                      fontSize: 25,
+                                                                      ),
+                                                                ),
                                                               ),
                                                               style: ElevatedButton.styleFrom(
                                                                 primary: Colors.brown,
+
                                                               ),
                                                             ),
                                                           ],
@@ -272,7 +298,7 @@ class _LoginPageState extends State<LoginPage>
                                             style: ElevatedButton.styleFrom(
                                               primary: _isButtonPressed ? Colors.brown[400] : Colors.brown[900],
                                               onPrimary: Colors.black,
-                                              minimumSize: Size(100, 40),
+                                              minimumSize: Size(0, 10),
                                               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(10),
