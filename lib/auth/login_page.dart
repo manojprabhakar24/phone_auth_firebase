@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../controllers/auth_service.dart';
-import 'ConfirmationScreen.dart';
+import '../confirmation/ConfirmationScreen.dart';
+
+import 'auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -36,8 +37,9 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
-          Container(
+        body: SingleChildScrollView(
+
+          child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 opacity: 200,
@@ -46,6 +48,7 @@ class _LoginPageState extends State<LoginPage>
               ),
             ),
             // Change the background color her
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -103,6 +106,7 @@ class _LoginPageState extends State<LoginPage>
                                   child: Column(
                                       children: [
                                         TextFormField(
+                                          cursorColor: Colors.brown,
                                           controller: _nameController,
                                           keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
@@ -135,6 +139,7 @@ class _LoginPageState extends State<LoginPage>
                                         ),
                                         SizedBox(height: 10),
                                         TextFormField(
+                                          cursorColor: Colors.brown,
                                           controller: _phoneController,
                                           keyboardType: TextInputType.number,
                                           decoration: InputDecoration(
@@ -190,11 +195,11 @@ class _LoginPageState extends State<LoginPage>
                                                         content: Text(
                                                           "Error in sending OTP",
                                                           style:  GoogleFonts.openSans(
-                                                        textStyle: TextStyle(
-                                                        color: Colors.brown[900],
-                                                            fontSize: 15,
+                                                            textStyle: TextStyle(
+                                                              color: Colors.brown[900],
+                                                              fontSize: 15,
                                                             ),
-                                                      ),
+                                                          ),
                                                         ),
                                                         backgroundColor: Colors.red,
                                                       ),
@@ -214,11 +219,14 @@ class _LoginPageState extends State<LoginPage>
                                                             Form(
                                                               key: _formKey1,
                                                               child: TextFormField(
+                                                                cursorColor: Colors.brown,
                                                                 keyboardType: TextInputType.number,
                                                                 controller: _otpController,
                                                                 style: TextStyle(color: Colors.brown),
                                                                 decoration: InputDecoration(
                                                                   labelText: "Enter OTP",
+                                                                    labelStyle: TextStyle(color: Colors.brown),
+
                                                                   border: OutlineInputBorder(
                                                                     borderRadius: BorderRadius.circular(8),
                                                                   ),
@@ -240,48 +248,54 @@ class _LoginPageState extends State<LoginPage>
                                                               ),
                                                             ),
                                                             SizedBox(height: 10),
-                                                            ElevatedButton(
-                                                              onPressed: () {
-                                                                if (_formKey1.currentState!.validate()) {
-                                                                  AuthService.loginWithOtp(
-                                                                    otp: _otpController.text,
-                                                                  ).then((value) {
-                                                                    if (value == "Success") {
-                                                                      Navigator.pop(context); // Close the OTP verification dialog
-                                                                      Navigator.pushReplacement(
-                                                                        context,
-                                                                        MaterialPageRoute(
-                                                                          builder: (context) =>  ConfirmationScreen (name: _nameController.text,
-                                                                            phoneNumber: _phoneController.text,), // Navigate to the next page on success
-                                                                        ),
-                                                                      );
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(context).showSnackBar(
-                                                                        SnackBar(
-                                                                          content: Text(
-                                                                            value,
-                                                                            style: TextStyle(color: Colors.white),
-                                                                          ),
-                                                                          backgroundColor: Colors.red,
-                                                                        ),
-                                                                      );
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                              children: [
+                                                                ElevatedButton(
+                                                                  onPressed: () {
+                                                                    if (_formKey1.currentState!.validate()) {
+                                                                      AuthService.loginWithOtp(
+                                                                        otp: _otpController.text,
+                                                                      ).then((value) {
+                                                                        if (value == "Success") {
+                                                                          Navigator.pop(context); // Close the OTP verification dialog
+                                                                          Navigator.pushReplacement(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                              builder: (context) =>  ConfirmationScreen (name: _nameController.text,
+                                                                                phoneNumber: _phoneController.text,), // Navigate to the next page on success
+                                                                            ),
+                                                                          );
+                                                                        } else {
+                                                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                value,
+                                                                                style: TextStyle(color: Colors.white),
+                                                                              ),
+                                                                              backgroundColor: Colors.red,
+                                                                            ),
+                                                                          );
+                                                                        }
+                                                                      });
                                                                     }
-                                                                  });
-                                                                }
-                                                              },
-                                                              child: Text(
-                                                                "Submit",
-                                                                style: GoogleFonts.openSans(
-                                                                  textStyle: TextStyle(
-                                                                      color: Colors.white,
-                                                                      fontSize: 25,
+                                                                  },
+                                                                  child: Text(
+                                                                    "Submit",
+                                                                    style: GoogleFonts.openSans(
+                                                                      textStyle: TextStyle(
+                                                                        color: Colors.white,
+                                                                        fontSize: 15,
                                                                       ),
-                                                                ),
-                                                              ),
-                                                              style: ElevatedButton.styleFrom(
-                                                                primary: Colors.brown,
+                                                                    ),
+                                                                  ),
+                                                                  style: ElevatedButton.styleFrom(
+                                                                    fixedSize: Size(150, 50),
+                                                                    primary: Colors.brown[900],
 
-                                                              ),
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ],
                                                         ),
@@ -317,6 +331,6 @@ class _LoginPageState extends State<LoginPage>
               ],
             ),
           ),
-        ]));
+        ));
   }
 }

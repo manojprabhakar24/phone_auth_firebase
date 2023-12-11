@@ -4,10 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class ConfirmationScreen extends StatelessWidget {
   final String name;
   final String phoneNumber;
-  final String parameter;
-  final String parameterone;
 
-  const ConfirmationScreen({Key? key, required this.name, required this.phoneNumber, required this.parameter, required this.parameterone}) : super(key: key);
+
+  const ConfirmationScreen({Key? key, required this.name, required this.phoneNumber, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -131,10 +130,7 @@ class ConfirmationScreen extends StatelessWidget {
                             color: Colors.blueGrey,
                           ),
                           SizedBox(height: 5,),
-                          Text(("Date: $parameter"),style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.black),),
-                          SizedBox(height: 2,),
-                          Text(("time:$parameterone"),style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.black),),
-                        ],
+                          ]
                       ),
                     ),
                   ],

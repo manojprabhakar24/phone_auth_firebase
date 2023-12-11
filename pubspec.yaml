@@ -38,6 +38,8 @@ dependencies:
   firebase_core: ^2.24.0
   firebase_auth: ^4.15.0
   google_fonts: ^6.1.0
+  intl: ^0.19.0
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +60,13 @@ flutter:
   assets:
     - assets/Scissors-image-remove.png
     - assets/background.jpg
+    - assets/facecare.jpeg
     - assets/tick.jpg
+    - assets/haircolor.jpeg
+    - assets/haircuttingsalon.jpg
+    - assets/massage.jpeg
+    - assets/shaving.jpeg
+
 
 
   # The following line ensures that the Material Icons font is
